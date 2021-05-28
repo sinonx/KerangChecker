@@ -1,6 +1,7 @@
 import requests
 from colorama import Fore, Back, Style
 import re
+import http
 
 
 
@@ -29,7 +30,7 @@ def sat():
 
 	for i in yee:
 		ga = i.strip()
-		r = requests.get(ga)
+		r = requests.get(ga, verify=False)
 		sat = re.findall('<title>(.*?)</title>', r.text)
 		try:
 			if r.status_code == 200:
