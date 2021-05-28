@@ -1,7 +1,6 @@
 import requests
 from colorama import Fore, Back, Style
 import re
-import http
 
 
 
