@@ -1,7 +1,7 @@
 import requests
 from colorama import Fore, Back, Style
 import re
-
+requests.packages.urllib3.disable_warnings()
 
 
 
