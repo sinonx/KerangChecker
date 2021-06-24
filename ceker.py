@@ -1,7 +1,7 @@
 import requests
-from colorama import Fore, Back, Style
 import re
 requests.packages.urllib3.disable_warnings()
+
 
 
 
@@ -11,13 +11,13 @@ def sat():
 
 	print("""
 
-		#############################################
-		#              SHELL CHECKER                #
-		#                                           #
-		#                                           #
-		#                Thanks to :                #
-		#   Family Attacy Cyber ~ Tatsumi Crew      #
-		#############################################
+#############################################
+#              SHELL CHECKER                #
+#                                           #
+#                                           #
+#                Thanks to :                #
+#   Family Attacy Cyber ~ Tatsumi Crew      #
+#############################################
 
 	""") #Coded by SinonX
 
@@ -32,20 +32,16 @@ def sat():
 		r = requests.get(ga, verify=False)
 		sat = re.findall('<title>(.*?)</title>', r.text)
 		try:
-			if r.status_code == 200:
-				print(f'{Fore.GREEN}[+]LIVE => ', ga)
-				open('live.txt', 'a').write(ga+'\n')
+			if '<title>' in r.text:
 				for z in sat:
-					print('Title : ', z)
-			elif r.status_code == 403:
-				print(f'{Fore.CYAN}[-]FORBIDDEN => ', ga)
-			elif r.status_code == 404:
-				print(f'{Fore.RED}[-]NOT FOUND => ', ga)
+					print(ga, ' -> ' + z)
+				open('livetitle.txt', 'a').write(ga+' -> '+z+'\n')
 			else:
-				print(f'{Fore.WHITE}[?]UNKNOWN => ', ga)
+				print(ga, ' -> DEAD')
+		except requests.exceptions.ConnectionError as e:
+			raise SystemExit(e)
 		except Exception:
-				print(f'{Fore.WHITE}[?]UNKNOWN => ', ga)
-
+			pass
 
 if __name__ == "__main__":
 	sat()
