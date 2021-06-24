@@ -29,17 +29,17 @@ def sat():
 
 	for i in yee:
 		ga = i.strip()
-		r = requests.get(ga, verify=False)
-		sat = re.findall('<title>(.*?)</title>', r.text)
 		try:
+			r = requests.get(ga, verify=False)
+			sat = re.findall('<title>(.*?)</title>', r.text)
 			if '<title>' in r.text:
 				for z in sat:
 					print(ga, ' -> ' + z)
 				open('livetitle.txt', 'a').write(ga+' -> '+z+'\n')
 			else:
 				print(ga, ' -> DEAD')
-		except requests.exceptions.ConnectionError as e:
-			raise SystemExit(e)
+		except requests.exceptions.ConnectionError:
+			pass
 		except Exception:
 			pass
 
