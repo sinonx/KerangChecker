@@ -25,7 +25,7 @@ def sat():
 
 
 	tol = input('Your list shell here => ')
-	yee = open(tol, 'r').readlines()
+	yee = open(tol, 'r', encoding="utf8").readlines()
 
 	for i in yee:
 		ga = i.strip()
